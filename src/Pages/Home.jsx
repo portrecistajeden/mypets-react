@@ -1,7 +1,8 @@
-import Button from "../Components/Button";
+import Button from "../Components/Homepage/Button";
+import SignIn from "../Components/Homepage/SignIn";
 import dogPic from '../Images/dogo.png'
 
-export default function Home() {
+export default function Home({data}) {
 
 
      return (
@@ -21,7 +22,8 @@ export default function Home() {
                 Aliquam commodo justo luctus purus sagittis, ut scelerisque arcu commodo. Etiam placerat erat accumsan libero varius, et rhoncus risus luctus. Fusce metus mi, malesuada sit amet eleifend vel, posuere in est. In volutpat sem ac eros vehicula convallis.
                 </h3>
                 <div className="mt-8">
-                    <Button target='/user/pets' text={'Sign in'} bgHoverColor={'bg-pink-300'}/>
+                    <SignIn data={{auth: data.auth, firebase: data.firebase, user: data.user}}/>
+                    {/* <Button target='/user/pets' text={'Sign in'} bgHoverColor={'bg-pink-300'}/> */}
                     <Button target='/' text={'Create account'} bgHoverColor={'bg-emerald-300'}/>
                 </div>
             </div>
