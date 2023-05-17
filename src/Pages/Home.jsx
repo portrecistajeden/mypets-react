@@ -3,10 +3,6 @@ import dogPic from '../Images/dogo.png'
 
 export default function Home() {
 
-    const model = {
-        id: '1',
-        username: 'TestUser'
-    };
 
      return (
         <main className="h-screen bg-gradient-to-br from-emerald-50 to-pink-200">
