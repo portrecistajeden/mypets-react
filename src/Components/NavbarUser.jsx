@@ -5,9 +5,7 @@ export default function NavbarUser({data}) {
     const navigate = useNavigate();
 
     const signOut = () => {
-        console.log(data.auth.currentUser);
         data.auth.signOut();
-        console.log(data.auth.currentUser);
         navigate('/');
     }
 

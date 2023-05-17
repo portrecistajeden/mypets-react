@@ -31,18 +31,14 @@ export default function App() {
     
     const [user] = useAuthState(auth);
 
-    useEffect(() => {
-        console.log(user)
-    },[user])
-
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<LayoutMain />}>
-                    <Route index element={<Home data={{auth: auth, firebase: firebase, user: user}}/>} />
+                    <Route index element={<Home data={{auth: auth, firebase: firebase, user: user, firestore: firestore}}/>} />
                 </Route>
                 <Route path='/user' element={<LayoutUser data={{auth: auth, user: user}}/>}>
-                    <Route path='/user/pets' element={<Pets/>} />
+                    <Route path='/user/pets' element={<Pets data={{firestore: firestore, user: user}}/>} />
                     <Route path='/user/appointments' element={<Appointments/>} />
                     <Route path='/user/history' element={<History/>}/>
                 </Route>
