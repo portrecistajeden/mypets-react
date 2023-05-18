@@ -6,14 +6,14 @@ export default function Home({data}) {
 
 
      return (
-        <main className="h-screen bg-gradient-to-br from-emerald-50 to-pink-200">
+        <main className="h-screen bg-gradient-to-br from-background from-20% to-accent">
             <div className="absolute bottom-1/2 left-16 w-2/3 max-w-[1200px]">
                 <h1 className="text-5xl my-8">Keep track of 
-                    <span className="text-emerald-500 font-bold"> your
+                    <span className="text-primary font-bold"> your
                     </span>
                     Pets veterinary visits, diet and more with
                     <span className="">
-                        <span className="text-pink-300 font-bold"> my
+                        <span className="text-accent font-bold"> my
                         </span>
                         Pets
                     </span>

@@ -15,6 +15,8 @@ export default function Pets({data}) {
     return(
         <div className="w-full h-fit flex flex-row justify-center items-center p-8">
             <PetCard data={{imgSource: vincijpg}}/>
+            <PetCard data={{imgSource: vincijpg}}/>
+            <PetCard data={{imgSource: vincijpg}}/>
         </div>
     )
 }

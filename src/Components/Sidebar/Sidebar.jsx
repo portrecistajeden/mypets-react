@@ -14,7 +14,7 @@ export default function Sidebar() {
         <div className={`overflow-hidden relative flex flex-col justify-between h-screen bg-background ${sidebarHidden ? 'w-20' : 'w-52'} transition-width duration-200 ease-out`}>
             <div className="flex flex-col">
                 <div className='flex items-center justify-center h-16 mb-8'>
-                    <h1 className="text-4xl font-bold text-center m-0"><span className="text-primary">{sidebarHidden ? 'm' : 'my'}</span>{sidebarHidden ? 'P' : 'Pets'}</h1>
+                    <h1 className="text-4xl font-bold text-center m-0"><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent to-80%">{sidebarHidden ? 'm' : 'my'}</span>{sidebarHidden ? 'P' : 'Pets'}</h1>
                 </div>
                 <SidebarLink data={{target: '/user/pets', text: 'Pets', icon:<RiUser3Line/>, sidebarHidden: sidebarHidden, setActivePage: setActivePage, activePage: activePage}}/> 
                 <SidebarLink data={{target: '/user/appointments', text: 'Appointments', icon:<FaClinicMedical/>, sidebarHidden: sidebarHidden, setActivePage: setActivePage, activePage: activePage}}/> 

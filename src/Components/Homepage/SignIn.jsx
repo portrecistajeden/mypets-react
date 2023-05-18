@@ -16,6 +16,6 @@ export default function SignIn({data}) {
    
 
     return (
-        <button className={`hover:bg-emerald-500 px-3 py-2 text-xl outline outline-2 outline-gray-950 rounded-lg shadow-lg transition m-4`} onClick={signInWithGoogle}>Sign In with Google</button>
+        <button className={`hover:gradient-background px-3 py-2 text-xl outline outline-2 outline-secondary rounded-lg shadow-lg transition m-4`} onClick={signInWithGoogle}>Sign In with Google</button>
   )
 }
