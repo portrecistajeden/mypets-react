@@ -1,3 +1,5 @@
+import PetCard from "../Components/Pets/PetCard";
+import vincijpg from '../Images/vinci.jpg'
 
 export default function Pets({data}) {
     
@@ -8,11 +10,11 @@ export default function Pets({data}) {
         return user;
     } 
 
-    console.log(getUser(data.user.email))
+    console.log('well ' + getUser(data.user.email))
 
     return(
-        <div>
-            pets
+        <div className="w-full h-fit flex flex-row justify-center items-center p-8">
+            <PetCard data={{imgSource: vincijpg}}/>
         </div>
     )
 }

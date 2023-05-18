@@ -10,7 +10,7 @@ export default function NavbarUser({data}) {
     }
 
     return (
-        <div className="bg-pink-300 h-16 items-center justify-between px-4">
+        <div className="bg-primary h-16 items-center justify-between px-4">
             <button className=" sign-out" onClick={signOut}>Sign Out</button>
         </div>
   )

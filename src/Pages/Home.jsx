@@ -8,7 +8,7 @@ export default function Home({data}) {
      return (
         <main className="h-screen bg-gradient-to-br from-emerald-50 to-pink-200">
             <div className="absolute bottom-1/2 left-16 w-2/3 max-w-[1200px]">
-                <h1 className="">Keep track of 
+                <h1 className="text-5xl my-8">Keep track of 
                     <span className="text-emerald-500 font-bold"> your
                     </span>
                     Pets veterinary visits, diet and more with
@@ -18,7 +18,7 @@ export default function Home({data}) {
                         Pets
                     </span>
                 </h1>
-                <h3 className="">
+                <h3 className="text-2xl my-2">
                 Aliquam commodo justo luctus purus sagittis, ut scelerisque arcu commodo. Etiam placerat erat accumsan libero varius, et rhoncus risus luctus. Fusce metus mi, malesuada sit amet eleifend vel, posuere in est. In volutpat sem ac eros vehicula convallis.
                 </h3>
                 <div className="mt-8">

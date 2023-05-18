@@ -9,10 +9,10 @@ module.exports = {
                 'width': 'width'
             },
             colors: {
-                'primary': '#B2A4FF',
-                'secondary': '#FFB4B4',
-                'tetrary': '#FFDEB4',
-                'accent': '#FDF7C3'
+                'background': '#c0d3c5',
+                'primary': '#78b09a',
+                'secondary': '#f2f2f2',
+                'accent': '#d1ae9f'
             }
         },
      },
