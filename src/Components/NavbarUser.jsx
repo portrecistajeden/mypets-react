@@ -1,17 +1,19 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-export default function NavbarUser({data}) {
+export default function NavbarUser({ data }) {
+	const { auth } = data;
+	const navigate = useNavigate();
 
-    const navigate = useNavigate();
+	const signOut = () => {
+		auth.signOut();
+		navigate('/');
+	};
 
-    const signOut = () => {
-        data.auth.signOut();
-        navigate('/');
-    }
-
-    return (
-        <div className="bg-primary h-16 items-center justify-between px-4">
-            <button className=" sign-out" onClick={signOut}>Sign Out</button>
-        </div>
-  )
+	return (
+		<div className='bg-primary h-16 items-center justify-between px-4'>
+			<button className=' sign-out' onClick={signOut}>
+				Sign Out
+			</button>
+		</div>
+	);
 }

@@ -1,22 +1,23 @@
-import PetCard from "../Components/Pets/PetCard";
-import vincijpg from '../Images/vinci.jpg'
+import PetCard from '../Components/Pets/PetCard';
+import vincijpg from '../Images/vinci.jpg';
 
-export default function Pets({data}) {
-    
-    const collection = data.firestore.collection('users');
+export default function Pets({ data }) {
+	const { firestore, user } = data;
 
-    const getUser = async (userEmail) => {
-        const user = await collection.where('email', '==', userEmail).get();
-        return user;
-    } 
+	const collection = firestore.collection('users');
 
-    console.log('well ' + getUser(data.user.email))
+	const getUser = async (userEmail) => {
+		const user = await collection.where('email', '==', userEmail).get();
+		return user;
+	};
 
-    return(
-        <div id='petCards container' className="w-full h-1/3 flex flex-row justify-center items-center p-8">
-            <PetCard data={{imgSource: vincijpg}}/>
-            <PetCard data={{imgSource: vincijpg}}/>
-            <PetCard data={{imgSource: vincijpg}}/>
-        </div>
-    )
+	console.log('well ' + getUser(user.email));
+
+	return (
+		<div id='petCards container' className='w-full h-1/3 flex flex-row justify-center items-center p-8'>
+			<PetCard data={{ imgSource: vincijpg }} />
+			<PetCard data={{ imgSource: vincijpg }} />
+			<PetCard data={{ imgSource: vincijpg }} />
+		</div>
+	);
 }
