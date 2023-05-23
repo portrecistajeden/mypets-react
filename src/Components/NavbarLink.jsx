@@ -15,8 +15,10 @@ export default function NavbarLink({ data }) {
 			<Link
 				onClick={handleClick}
 				to={target}
-				className={`flex flex-row px-4 items-center w-full h-full
-                ${isActive ? 'bg-accent' : 'bg-background'} rounded-[32px] hover:rounded-[6px] duration-200 mx-0 
+				className={`flex flex-row px-4 items-center w-full h-full border-4
+                ${
+									isActive ? 'border-accent' : 'border-background'
+								} rounded-[32px] hover:rounded-[6px] duration-200 mx-0 
                 `}>
 				<span
 					className={`flex flex-col justify-end items-center h-[22px] text-xl mr-2

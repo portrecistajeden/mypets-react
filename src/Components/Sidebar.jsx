@@ -3,7 +3,7 @@ import vincijpg from '../Images/vinci.jpg';
 import dogsData from '../dataFiles/dogs.json';
 
 export default function Sidebar() {
-	const [activePet, setActivePet] = useState('');
+	const [activePet, setActivePet] = useState(1);
 
 	const mapPets = dogsData.dogs.map((pet) => (
 		<div id=' photoWrapper' className='aspect-square w-[80%] my-2 drop-shadow-md shadow-stone-300'>
