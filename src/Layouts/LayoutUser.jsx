@@ -1,5 +1,5 @@
 import NavbarUser from '../Components/NavbarUser';
-import Sidebar from '../Components/Sidebar/Sidebar';
+import Sidebar from '../Components/Sidebar';
 import { Navigate, Outlet } from 'react-router-dom';
 
 export default function LayoutUser({ data }) {

@@ -17,11 +17,9 @@ export default function Home({ data }) {
 					</span>
 				</h1>
 				<h3 className='text-2xl my-2'>
-					Aliquam commodo justo luctus purus sagittis, ut scelerisque
-					arcu commodo. Etiam placerat erat accumsan libero varius, et
-					rhoncus risus luctus. Fusce metus mi, malesuada sit amet
-					eleifend vel, posuere in est. In volutpat sem ac eros
-					vehicula convallis.
+					Aliquam commodo justo luctus purus sagittis, ut scelerisque arcu commodo. Etiam placerat erat accumsan libero
+					varius, et rhoncus risus luctus. Fusce metus mi, malesuada sit amet eleifend vel, posuere in est. In volutpat
+					sem ac eros vehicula convallis.
 				</h3>
 				<div className='mt-8'>
 					<SignIn
@@ -36,11 +34,7 @@ export default function Home({ data }) {
 				</div>
 			</div>
 
-			<img
-				className='absolute bottom-0 right-0 contrast-75 w-auto h-[50vw] aspect-auto'
-				src={dogPic}
-				alt='dog'
-			/>
+			<img className='absolute bottom-0 right-0 contrast-75 w-auto h-[50vw] aspect-auto' src={dogPic} alt='dog' />
 		</main>
 	);
 }

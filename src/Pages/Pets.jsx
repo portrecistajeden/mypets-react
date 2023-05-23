@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import PetCard from '../Components/Pets/PetCard';
 import vincijpg from '../Images/vinci.jpg';
+import dogsData from '../dataFiles/dogs.json';
 
 export default function Pets({ data }) {
 	const { firestore, user } = data;
+	const [activePet, setActivePet] = useState('');
 
 	const collection = firestore.collection('users');
 
@@ -11,13 +14,11 @@ export default function Pets({ data }) {
 		return user;
 	};
 
-	console.log('well ' + getUser(user.email));
-
-	return (
-		<div id='petCards container' className='w-full h-1/3 flex flex-row justify-center items-center p-8'>
-			<PetCard data={{ imgSource: vincijpg }} />
-			<PetCard data={{ imgSource: vincijpg }} />
-			<PetCard data={{ imgSource: vincijpg }} />
+	const mapPets = dogsData.dogs.map((pet) => (
+		<div id=' photoWrapper' className='aspect-square w-1/2 m-0 drop-shadow-md shadow-stone-300'>
+			<img className='rounded-full border-4 border-accent object-cover' src={vincijpg} />
 		</div>
-	);
+	));
+
+	return <>{!activePet ? <h1>pets</h1> : <h1>Hi</h1>}</>;
 }

@@ -1,0 +1,35 @@
+{
+  "dogs":[{
+    "id": 1,
+    "name": "Vinci Goliszek",
+    "species": "Dog",
+    "breed": "Wilczur Podlaski",
+    "birthday": "2019-07-27",
+    "weight": 8.8,
+    "imgSrc": "C:\\Users\\piawr\\Desktop\\portfolio\\mypets-react\\src\\Images\\vinci.jpg"
+  },{
+    "id": 2,
+    "name": "Skadi Awramiuk",
+    "species": "Dog",
+    "breed": "Czarny Najszybszy",
+    "birthday": "2021-10-12",
+    "weight": 13.8,
+    "imgSrc": "C:\\Users\\piawr\\Desktop\\portfolio\\mypets-react\\src\\Images\\dogo.png"
+  },{
+    "id": 3,
+    "name": "Vinci Goliszek",
+    "species": "Dog",
+    "breed": "Wilczur Podlaski",
+    "birthday": "2019-07-27",
+    "weight": 8.8,
+    "imgSrc": "C:\\Users\\piawr\\Desktop\\portfolio\\mypets-react\\src\\Images\\vinci.jpg"
+  },{
+    "id": 4,
+    "name": "Skadi Awramiuk",
+    "species": "Dog",
+    "breed": "Czarny Najszybszy",
+    "birthday": "2021-10-12",
+    "weight": 13.8,
+    "imgSrc": "C:\\Users\\piawr\\Desktop\\portfolio\\mypets-react\\src\\Images\\dogo.png"
+  }]
+}
