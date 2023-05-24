@@ -13,6 +13,15 @@ module.exports = {
                 'primary': '#78b09a',
                 'secondary': '#f2f2f2',
                 'accent': '#d1ae9f'
+            },
+            animation: {
+              'add-pet-pulse': 'add-pet-pulse 0.8s linear 1' 
+            },
+            keyframes: {
+              "add-pet-pulse": {
+                'from to': {borderRadius: '64px'},
+                '50%': {borderRadius: '16px'},
+              }
             }
         },
      },

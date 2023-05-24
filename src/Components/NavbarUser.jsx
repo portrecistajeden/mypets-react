@@ -6,12 +6,13 @@ import { BsCalendarDate } from 'react-icons/bs';
 import NavbarLink from './NavbarLink';
 
 export default function NavbarUser({ data }) {
-	const [activePage, setActivePage] = useState('');
+	const [activePage, setActivePage] = useState('Pet info');
 	const { auth } = data;
 	const navigate = useNavigate();
 
 	const signOut = () => {
 		auth.signOut();
+		localStorage.clear();
 		navigate('/');
 	};
 
@@ -20,7 +21,7 @@ export default function NavbarUser({ data }) {
 			<div className='flex flex-row '>
 				<NavbarLink
 					data={{
-						target: '/user/pets',
+						target: '/user/pet',
 						text: 'Pet info',
 						icon: <MdPets />,
 						setActivePage: setActivePage,

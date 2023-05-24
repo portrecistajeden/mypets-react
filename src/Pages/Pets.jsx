@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PetCard from '../Components/Pets/PetCard';
 import vincijpg from '../Images/vinci.jpg';
 import dogsData from '../dataFiles/dogs.json';
 
@@ -9,10 +8,10 @@ export default function Pets({ data }) {
 
 	const collection = firestore.collection('users');
 
-	const getUser = async (userEmail) => {
-		const user = await collection.where('email', '==', userEmail).get();
-		return user;
-	};
+	// const getUser = async (userEmail) => {
+	// 	const user = await collection.where('email', '==', userEmail).get();
+	// 	return user;
+	// };
 
 	const mapPets = dogsData.dogs.map((pet) => (
 		<div id=' photoWrapper' className='aspect-square w-1/2 m-0 drop-shadow-md shadow-stone-300'>

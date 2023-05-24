@@ -3,15 +3,16 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignIn({ data }) {
-	const { auth, firebase } = data;
+	const { auth, firebase, user } = data;
 
 	const navigate = useNavigate();
 
 	const signInWithGoogle = () => {
 		const provider = new firebase.auth.GoogleAuthProvider();
-		auth.signInWithPopup(provider)
-			.then(console.log(auth))
-			.then(() => navigate('/user/pets'));
+		auth
+			.signInWithPopup(provider)
+			.then(localStorage.setItem('user', JSON.stringify(user)))
+			.then(() => navigate('/user/pet'));
 	};
 
 	return (
