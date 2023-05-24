@@ -1,14 +1,21 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-export default function PetInfo({ data }) {
-	const { firestore, user } = data;
-	const [activePet, setActivePet] = useState('');
+export default function PetInfo({ activePet }) {
+	const mappedData = Object.entries(activePet).map(([key, value]) => {
+		if ((key !== 'id') & (key !== 'imgSrc')) {
+			return (
+				<div className='w-full h-8 flex flex-row justify-between'>
+					<label>{key}</label>
+					<label className='font-bold'>{value}</label>
+				</div>
+			);
+		}
+	});
 
-	const collection = firestore.collection('users');
-
-	// const getUser = async (userEmail) => {
-	// 	const user = await collection.where('email', '==', userEmail).get();
-	// 	return user;
-	// };
-	return <div className='text-black'>Pet info</div>;
+	return (
+		<>
+			{mappedData}
+			<button className='mx-auto'>Edit</button>
+		</>
+	);
 }

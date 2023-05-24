@@ -4,7 +4,7 @@ import LayoutUser from './Layouts/LayoutUser';
 import Home from './Pages/Home';
 import Appointments from './Pages/Appointments';
 import History from './Pages/History';
-import PetInfo from './Components/PetInfo';
+import PetCard from './Components/PetCard';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
@@ -12,6 +12,7 @@ import 'firebase/compat/auth';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useState } from 'react';
 
 firebase.initializeApp({
 	apiKey: 'AIzaSyBbCiCsmhTiNzENAmrGVewUcaS0rV00mEA',
@@ -36,7 +37,7 @@ export default function App() {
 					<Route index element={<Home data={{ auth: auth, firebase: firebase, user: user, firestore: firestore }} />} />
 				</Route>
 				<Route path='/user' element={<LayoutUser data={{ auth: auth, user: user }} />}>
-					<Route path='/user/pet' element={<PetInfo data={{ firestore: firestore, user: user }} />} />
+					<Route path='/user/pet' element={<PetCard data={{ firestore: firestore, user: user }} />} />
 					<Route path='/user/appointments' element={<Appointments />} />
 					<Route path='/user/history' element={<History />} />
 				</Route>

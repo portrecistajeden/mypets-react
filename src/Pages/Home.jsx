@@ -27,7 +27,6 @@ export default function Home({ data }) {
 							auth: auth,
 							firebase: firebase,
 							user: user,
-							firestore: firestore,
 						}}
 					/>
 					{/* <Button target='/user/pets' text={'Sign in'} bgHoverColor={'bg-pink-300'}/> */}

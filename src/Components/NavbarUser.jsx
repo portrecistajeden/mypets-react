@@ -4,6 +4,7 @@ import { MdPets } from 'react-icons/md';
 import { FaClinicMedical } from 'react-icons/fa';
 import { BsCalendarDate } from 'react-icons/bs';
 import NavbarLink from './NavbarLink';
+import SignOut from './SignOut';
 
 export default function NavbarUser({ data }) {
 	const [activePage, setActivePage] = useState('Pet info');
@@ -11,9 +12,9 @@ export default function NavbarUser({ data }) {
 	const navigate = useNavigate();
 
 	const signOut = () => {
-		auth.signOut();
-		localStorage.clear();
+		auth.signOut().then(localStorage.clear());
 		navigate('/');
+		console.log(localStorage);
 	};
 
 	return (
@@ -47,12 +48,7 @@ export default function NavbarUser({ data }) {
 					}}
 				/>
 			</div>
-			<button
-				id='sign-out'
-				className='mx-2 p-2 bg-primary border-2 border-background rounded-[16px] hover:rounded-[4px] duration-200'
-				onClick={signOut}>
-				Sign Out
-			</button>
+			<SignOut signOut={signOut} />
 		</div>
 	);
 }
