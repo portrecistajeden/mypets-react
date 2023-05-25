@@ -2,8 +2,7 @@ import SignIn from '../Components/Homepage/SignIn';
 import dogPic from '../Images/dogo.png';
 
 export default function Home({ data }) {
-	const { auth, firebase, user, firestore } = data;
-
+	const { auth, provider } = data;
 	return (
 		<main className='h-screen bg-gradient-to-br from-background from-20% to-accent'>
 			<div className='absolute bottom-1/2 left-16 w-2/3 max-w-[1200px]'>
@@ -22,13 +21,7 @@ export default function Home({ data }) {
 					sem ac eros vehicula convallis.
 				</h3>
 				<div className='mt-8'>
-					<SignIn
-						data={{
-							auth: auth,
-							firebase: firebase,
-							user: user,
-						}}
-					/>
+					<SignIn data={{ auth: auth, provider: provider }} />
 					{/* <Button target='/user/pets' text={'Sign in'} bgHoverColor={'bg-pink-300'}/> */}
 				</div>
 			</div>

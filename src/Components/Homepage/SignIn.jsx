@@ -1,19 +1,17 @@
-import React, { useEffect } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignIn({ data }) {
-	const { auth, firebase, user } = data;
-
+	const { auth, provider } = data;
 	const navigate = useNavigate();
 
-	const signInWithGoogle = () => {
-		const provider = new firebase.auth.GoogleAuthProvider();
-		auth
-			.signInWithPopup(provider)
-			.then(localStorage.setItem('user', JSON.stringify(user)))
+	function signInWithGoogle() {
+		signInWithPopup(auth, provider)
+			.then((result) => {
+				localStorage.setItem('user', JSON.stringify(result.user));
+			})
 			.then(() => navigate('/user/pet'));
-	};
+	}
 
 	return (
 		<button

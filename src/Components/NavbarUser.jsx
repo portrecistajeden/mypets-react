@@ -5,17 +5,11 @@ import { FaClinicMedical } from 'react-icons/fa';
 import { BsCalendarDate } from 'react-icons/bs';
 import NavbarLink from './NavbarLink';
 import SignOut from './SignOut';
+import { getAuth } from 'firebase/auth';
 
 export default function NavbarUser({ data }) {
 	const [activePage, setActivePage] = useState('Pet info');
 	const { auth } = data;
-	const navigate = useNavigate();
-
-	const signOut = () => {
-		auth.signOut().then(localStorage.clear());
-		navigate('/');
-		console.log(localStorage);
-	};
 
 	return (
 		<div className='bg-primary flex flex-row justify-between h-16 items-center'>
@@ -48,7 +42,7 @@ export default function NavbarUser({ data }) {
 					}}
 				/>
 			</div>
-			<SignOut signOut={signOut} />
+			<SignOut data={{ auth: auth }} />
 		</div>
 	);
 }
