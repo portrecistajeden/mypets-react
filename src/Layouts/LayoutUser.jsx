@@ -12,61 +12,50 @@ export default function LayoutUser({ data }) {
 	const activePet = dogsData.dogs.filter((pet) => pet.id === activePetID);
 	const [currentUserData, setCurrentUserData] = useState({});
 	const [usersPets, setUsersPets] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const db = getFirestore();
 	const refCol = collection(db, 'users');
 
-	// useState(() => {
-	// 	onAuthStateChanged(auth, (user) => {
-	// 		if (user) {
-	// 			console.log(user.email);
-	// 		} else {
-	// 			// User is signed out
-	// 			// ...
-	// 		}
-	// 	});
-	// }, []);
-
 	async function fetchUserFromDB() {
+		let user = {};
 		await getDocs(refCol)
 			.then((snapshot) => {
-				snapshot.docs.forEach((doc) => {
-					const docUserData = { ...doc.data() };
-					if (docUserData.uid === auth.currentUser.uid) {
-						setCurrentUserData({ id: doc.uid, docID: doc.id, ...doc.data() });
-					}
-				});
+				const users = snapshot.docs.map((doc) => ({ ...doc.data(), docID: doc.id }));
+				user = users.find((user) => user.uid === auth.currentUser.uid);
+				setCurrentUserData(user);
 			})
 			.catch((error) => {
 				console.log(error.message);
 			});
-	}
 
-	async function fetchUsersPets() {
-		let response = [];
-		const refPets = collection(db, `/users/${currentUserData.docID}/pets`);
-		await getDocs(refPets)
-			.then((snapshot) => {
-				snapshot.docs.forEach((doc) => {
-					const petData = { ...doc.data() };
-					response.push(petData);
-				});
-			})
-			.then(setUsersPets(response));
+		const refPets = collection(db, `/users/${user.docID}/pets`);
+		let pets = [];
+		await getDocs(refPets).then((snapshot) => {
+			snapshot.docs.forEach((doc) => {
+				const petData = { ...doc.data() };
+				pets.push(petData);
+			});
+			setUsersPets(pets);
+		});
 	}
 
 	useEffect(() => {
-		fetchUserFromDB().then(console.log(currentUserData));
+		fetchUserFromDB();
 	}, []);
+
+	useEffect(() => {
+		if (usersPets.length > 0) setActivePet(usersPets[0].ID);
+		setIsLoading(false);
+		console.log(usersPets);
+	}, [usersPets]);
 
 	return isLoading ? (
 		<div>
-			<h1>LOADING</h1>
+			<h1 className='text-black'>LOADING</h1>
 		</div>
 	) : (
 		<div className='flex flex-row'>
-			{/* <Sidebar data={{ activePetID: activePetID, setActivePet: setActivePet, dogs: dogsData.dogs }} /> */}
 			<Sidebar data={{ activePetID: activePetID, setActivePet: setActivePet, pets: usersPets }} />
 
 			<div className='flex flex-col grow'>
