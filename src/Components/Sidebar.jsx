@@ -4,8 +4,12 @@ import PetIcon from './PetIcon';
 import AddPet from './AddPet';
 
 export default function Sidebar({ data }) {
-	const { activePetID, setActivePet, pets } = data;
-	const mapPets = pets.map((pet) => <PetIcon data={{ activePetID, pet, setActivePet }} key={pet.ID} />);
+	const { activePet, setActivePet, pets } = data;
+	const mapPets = pets.map((pet) => {
+		const isActive = activePet.ID === pet.ID;
+
+		return <PetIcon data={{ isActive, pet, setActivePet }} key={pet.ID} />;
+	});
 
 	return (
 		<div className={`overflow-hidden relative flex flex-col items-center h-screen bg-background z-20 w-32`}>

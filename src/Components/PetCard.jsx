@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 import PetInfo from './PetInfo';
 import PetRecords from './PetRecords';
 
-export default function PetCard({ data }) {
+export default function PetCard() {
 	const [activeTab, setActiveTab] = useState('records');
 	const [activePet] = useOutletContext();
 
@@ -39,7 +39,7 @@ export default function PetCard({ data }) {
 						activeTab === 'profile' ? '-translate-y-full' : ''
 					} grid grid-cols-2 gap-4 w-full h-full transition-transform duration-200 overflow-hidden p-2`}>
 					<div className='h-fit bg-primary rounded-lg p-4'>
-						<PetInfo activePet={activePet[0]} />
+						<PetInfo activePet={activePet} />
 					</div>
 				</div>
 			</div>
