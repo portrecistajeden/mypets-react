@@ -11,48 +11,65 @@ export default function LayoutUser({ data }) {
 	const [currentUserData, setCurrentUserData] = useState({});
 	const [usersPets, setUsersPets] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [activePetRecords, setActivePetRecords] = useState({});
+	const [petsRecords, setPetsRecords] = useState([]);
 
 	const db = getFirestore();
-	const refCol = collection(db, 'users');
+
+	async function fetchData() {
+		const user = await fetchUserFromDB();
+		setCurrentUserData(user);
+
+		const pets = await fetchUsersPets(user);
+		setUsersPets(pets);
+
+		const records = await fetchPetRecords(user, pets);
+		setPetsRecords(records);
+	}
 
 	async function fetchUserFromDB() {
 		let user = {};
-		await getDocs(refCol)
+		const refUsers = collection(db, 'users');
+		await getDocs(refUsers)
 			.then((snapshot) => {
 				const users = snapshot.docs.map((doc) => ({ ...doc.data(), docID: doc.id }));
 				user = users.find((user) => user.uid === auth.currentUser.uid);
-				setCurrentUserData(user);
 			})
 			.catch((error) => {
 				console.log(error.message);
 			});
+		return user;
+	}
 
-		const refPets = collection(db, `/users/${user.docID}/pets`);
+	async function fetchUsersPets(user) {
 		let pets = [];
+		const refPets = collection(db, `/users/${user.docID}/pets`);
 		await getDocs(refPets).then((snapshot) => {
 			snapshot.docs.forEach((doc) => {
 				const petData = { ...doc.data(), docID: doc.id };
 				pets.push(petData);
 			});
-			setUsersPets(pets);
 		});
+		return pets;
 	}
 
-	async function fetchActivePetRecords() {
-		const refPet = collection(db, `/users/${currentUserData.docID}/pets/${activePet.docID}/records`);
+	async function fetchPetRecords(user, pets) {
 		let resultArray = [];
-		await getDocs(refPet).then((snapshot) => {
-			snapshot.docs.forEach((doc) => {
-				const record = { ...doc.data(), docID: doc.id };
-				resultArray.push(record);
+		for (const pet of pets) {
+			let petRecords = [];
+			const refPet = collection(db, `/users/${user.docID}/pets/${pet.docID}/records`);
+			await getDocs(refPet).then((snapshot) => {
+				snapshot.docs.forEach((doc) => {
+					const record = { ...doc.data(), docID: doc.id };
+					petRecords.push(record);
+				});
 			});
-			setActivePetRecords(resultArray);
-		});
+			resultArray.push({ [pet.name]: petRecords });
+		}
+		return resultArray;
 	}
 
 	useEffect(() => {
-		fetchUserFromDB();
+		fetchData();
 	}, []);
 
 	useEffect(() => {
@@ -60,12 +77,14 @@ export default function LayoutUser({ data }) {
 			setActivePet(usersPets[0]);
 		}
 		setIsLoading(false);
-	}, [usersPets]);
+	}, [petsRecords]);
 
-	// useEffect(() => {
-	// 	fetchActivePetRecords();
-	// 	setIsLoading(false);
-	// }, [activePet]);
+	function getActivePetRecords() {
+		const entry = petsRecords.find((record) => {
+			return Object.keys(record)[0] === activePet.name;
+		});
+		return entry[Object.keys(entry)];
+	}
 
 	return isLoading ? (
 		<div>

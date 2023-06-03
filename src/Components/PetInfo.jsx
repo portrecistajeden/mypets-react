@@ -3,7 +3,6 @@ export default function PetInfo({ activePet }) {
 		const date = timestamp.toDate();
 		return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 	}
-	console.log(activePet);
 	return Object.keys(activePet).length > 0 ? (
 		<>
 			<div className='w-full h-8 flex flex-row justify-between'>

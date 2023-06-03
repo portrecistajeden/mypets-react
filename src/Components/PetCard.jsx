@@ -6,7 +6,6 @@ import PetRecords from './PetRecords';
 export default function PetCard() {
 	const [activeTab, setActiveTab] = useState('records');
 	const [activePet] = useOutletContext();
-
 	return (
 		<div className='flex flex-col xl:w-2/3 xl:mx-auto grow bg-background m-8 rounded-lg overflow-hidden'>
 			<div id='flex flex-row pet-info-tabs p-2'>
