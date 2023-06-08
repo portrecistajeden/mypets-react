@@ -20,10 +20,12 @@ export default function LayoutUser({ data }) {
 		setCurrentUserData(user);
 
 		const pets = await fetchUsersPets(user);
-		setUsersPets(pets);
+		if (pets.length > 0) {
+			setActivePet(pets[0]);
+		}
 
-		const records = await fetchPetRecords(user, pets);
-		setPetsRecords(records);
+		const petsWithRecords = await fetchPetRecords(user, pets);
+		setUsersPets(petsWithRecords);
 	}
 
 	async function fetchUserFromDB() {
@@ -59,11 +61,11 @@ export default function LayoutUser({ data }) {
 			const refPet = collection(db, `/users/${user.docID}/pets/${pet.docID}/records`);
 			await getDocs(refPet).then((snapshot) => {
 				snapshot.docs.forEach((doc) => {
-					const record = { ...doc.data(), docID: doc.id };
+					const record = { ...doc.data(), recordDocID: doc.id };
 					petRecords.push(record);
 				});
 			});
-			resultArray.push({ [pet.name]: petRecords });
+			resultArray.push(Object.assign(pet, { records: petRecords }));
 		}
 		return resultArray;
 	}
@@ -73,18 +75,8 @@ export default function LayoutUser({ data }) {
 	}, []);
 
 	useEffect(() => {
-		if (usersPets.length > 0) {
-			setActivePet(usersPets[0]);
-		}
 		setIsLoading(false);
-	}, [petsRecords]);
-
-	function getActivePetRecords() {
-		const entry = petsRecords.find((record) => {
-			return Object.keys(record)[0] === activePet.name;
-		});
-		return entry[Object.keys(entry)];
-	}
+	}, [usersPets]);
 
 	return isLoading ? (
 		<div>
